@@ -79,6 +79,9 @@ header{
 .product-body{
 	width: 50%;
 	padding: 1em 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .products .form-control{
@@ -133,6 +136,7 @@ span.collapsing{
 
 	.product-body{
 		width: 100%;
+        height: 100%;
 		padding: 0;
 		padding-top: 1em;
 	}
@@ -140,4 +144,9 @@ span.collapsing{
 	.cart{
 		height: 24px;
 	}
+}
+
+.product-title {
+    display: flex;
+    justify-content: space-between;
 }
