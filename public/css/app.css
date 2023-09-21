@@ -150,3 +150,14 @@ span.collapsing{
     display: flex;
     justify-content: space-between;
 }
+
+.discount, .original {
+    color: red;
+}
+
+.discount span , .original span {
+    font-weight: bold;
+}
+
+
+
