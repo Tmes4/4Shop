@@ -9,8 +9,9 @@ use PhpParser\Node\Expr\FuncCall;
 class Product extends Model
 {
 
-    public function getPriceAttribute($value,)
+    public function getPriceAfterDiscountAttribute($value)
     {
+        $value = $this->price;
         $discount = $value  * ($this->discount / 100);
         $final_price = $value - $discount;
         // $originalPrice = $value = ($this->old_price);
@@ -18,9 +19,6 @@ class Product extends Model
         return number_format($final_price, 2);
     }
 
-    public Function getprice_after_discountAttribute($value) {
-
-    }
 
     // public function getPriceAttribute($value) {
     //     $originalPrice = value($this->old_price);
