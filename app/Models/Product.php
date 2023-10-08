@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use PhpParser\Builder\Function_;
 use PhpParser\Node\Expr\FuncCall;
+use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class Product extends Model
 {
@@ -36,5 +37,11 @@ class Product extends Model
 
         return $this->hasMany(Type::class);
     }
+
+    public Function category() {
+        
+        return $this->belongsTo(Category::class);
+    }
+
 }
 

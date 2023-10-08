@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\UserController;
@@ -54,6 +55,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::post('orders/mail', [AdminOrderController::class, 'mail_send'])->name('admin.orders.mail.send');
     Route::get('orders/packing', [AdminOrderController::class, 'packing'])->name('admin.orders.packing');
     Route::resource('orders', AdminOrderController::class, ['as' => 'admin'])->only(['index', 'show', 'destroy']);
+
+    Route::resource('categories', CategoryController::class, ['as' => 'admin'])->except('show');
+    // Route::get('categories', CategoryController::class, 'index')->name('admin.categories.index');
 
 });
 

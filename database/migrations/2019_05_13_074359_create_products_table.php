@@ -24,6 +24,9 @@ class CreateProductsTable extends Migration
             $table->timestamps();
             $table->decimal('discount', 4, 1)->default(0);
             $table->decimal('price_after_discount', 10, 2)->default(0)->nullable();
+
+
+
         });
     }
 

@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -19,7 +20,9 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-        return view('admin.products.create');
+        $categories = Category::all();
+        return view('admin.products.create')
+            ->with('categories', $categories);
     }
 
     public function store(Request $request)
@@ -27,6 +30,7 @@ class ProductController extends Controller
         $this->validate(request(), [
             'title' => 'required',
             'price' => 'required|numeric',
+            'category' => 'required|exists:categories,id',
             'active' => 'required|boolean',
             'leiding' => 'required|boolean',
             'image' => 'nullable|image',
@@ -34,10 +38,11 @@ class ProductController extends Controller
         ]);
 
         $product = new Product();
-        $product->title = $request->title; 
+        $product->title = $request->title;
         $product->price = $request->price;
         $product->active = $request->active;
         $product->leiding = $request->leiding;
+        $product->category_id = $request->category;
         $product->description = $request->description;
         if($request->hasFile('image'))
         {
@@ -66,7 +71,7 @@ class ProductController extends Controller
             'description' => 'required',
             'sizes' => 'required'
         ]);
-        
+
         $type = new Type();
         $type->title = $request->title;
         $type->description = $request->description;
@@ -93,12 +98,13 @@ class ProductController extends Controller
     {
         $type->delete();
         return redirect()->route('admin.products.types', $product);
-    }    
+    }
 
     public function edit(Product $product)
     {
+        $categories = Category::all();
         return view('admin.products.edit')
-                ->with(compact('product'));
+                ->with(compact('product', 'categories'), $categories);
     }
 
     public function update(Request $request, Product $product)
@@ -106,16 +112,18 @@ class ProductController extends Controller
         $this->validate(request(), [
             'title' => 'required',
             'price' => 'required|numeric',
+            'category' => 'required|exists:categories,id',
             'active' => 'required|boolean',
             'leiding' => 'required|boolean',
             'image' => 'nullable|image',
             'description' => 'nullable'
         ]);
 
-        $product->title = $request->title; 
+        $product->title = $request->title;
         $product->price = $request->price;
         $product->active = $request->active;
         $product->leiding = $request->leiding;
+        $product->category_id = $request->category;
         $product->description = $request->description;
         if($request->hasFile('image'))
         {
