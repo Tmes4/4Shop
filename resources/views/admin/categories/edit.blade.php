@@ -21,7 +21,7 @@
 
     <div class="mt-4" >
         <h2>Producten</h2>
-        {{ $category->$products}}
+        <!-- {{ $category->$products}} -->
         @foreach ($products as $product)
         <ul class="mb-1">
             <li>{{ $product->title}}</</li>

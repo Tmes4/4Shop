@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\admin\Categroy;
+use App\Models\Category;
 use App\Models\Order_rule;
 use Illuminate\Http\Request;
 
@@ -10,9 +12,10 @@ class ProductController extends Controller
 {
     public function index()
     {
+        $categories = Category::all();
         $products = Product::where('active', true)->get();
         return view('products.index')
-                ->with(compact('products'));
+                ->with(compact('products', 'categories'));
     }
 
     public function show(Product $product)

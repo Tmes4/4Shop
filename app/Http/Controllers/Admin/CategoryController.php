@@ -62,7 +62,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $products = Product::all();
+        $products = Product::where('category_id', $category->id)->get();
         return view('admin.categories.edit')
             ->with(compact('category', 'products'));
     }
