@@ -3,17 +3,6 @@
 @section('content')
 
 <div class="products">
-    <div class="dropdown">
-        <button class="btn btn-secondary" type="button" id="customDropdownButton">
-            Selecteer een categorie
-        </button>
-        <ul class="custom-dropdown-menu" aria-labelledby="customDropdownButton">
-            @foreach($categories as $category)
-            <li><a href="{{ route('category.show', $category->id) }}">{{ $category->name }}</a></li>
-            @endforeach
-        </ul>
-    </div>
-
     @foreach($products as $product)
 
     <a class="product-row no-link" href="{{ route('products.show', $product) }}">

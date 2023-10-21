@@ -48,10 +48,17 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
+    // public function show(Category $category)
+    // {
+    //     return view('categories.show')
+    //         ->with(compact('category'));
+    // }
+
     public function show(Category $category)
     {
-        return view('categories.show')
-            ->with(compact('category'));
+        $products = Product::where('category_id', $category->id)->get();
+        return view('admin.categories.show')
+            ->with(compact('category', 'products'));
     }
 
     /**

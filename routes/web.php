@@ -9,6 +9,7 @@ use App\Http\Controllers\IdealController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,6 +58,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::resource('orders', AdminOrderController::class, ['as' => 'admin'])->only(['index', 'show', 'destroy']);
 
     Route::resource('categories', CategoryController::class, ['as' => 'admin'])->except('show');
+    Route::get('categories/{category}', [CategoryController::class, 'show'])->name('category.show'); //NEW
+
     // Route::get('categories', CategoryController::class, 'index')->name('admin.categories.index');
 
 });

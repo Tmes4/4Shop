@@ -159,5 +159,25 @@ span.collapsing{
     font-weight: bold;
 }
 
+.custom-dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 0;
+}
+
+.custom-dropdown-menu li {
+    padding: 5px;
+}
+
+.custom-dropdown-menu li:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown:hover .custom-dropdown-menu {
+    display: block;
+}
 
 

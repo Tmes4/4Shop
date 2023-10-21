@@ -3,7 +3,7 @@
 @section('content')
 
 	<div class="d-flex justify-content-between align-items-center my-4">
-		<h4>Producten</h4>
+		<h4>Categorien</h4>
 		<div>
 			<a href="{{ route('admin.categories.create') }}">Nieuw Categorie toevoegen</a>
 		</div>

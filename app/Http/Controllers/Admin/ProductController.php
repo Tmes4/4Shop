@@ -15,7 +15,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
         return view('admin.products.index')
-                ->with(compact('products'));
+            ->with(compact('products'));
     }
 
     public function create(Request $request)
@@ -23,6 +23,13 @@ class ProductController extends Controller
         $categories = Category::all();
         return view('admin.products.create')
             ->with('categories', $categories);
+    }
+
+    public function show(Category $category)
+    {
+        $products = Product::where('category_id', $category->id)->get();
+        return view('admin.categories.show')
+            ->with(compact('category', 'products'));
     }
 
     public function store(Request $request)
@@ -44,8 +51,7 @@ class ProductController extends Controller
         $product->leiding = $request->leiding;
         $product->category_id = $request->category;
         $product->description = $request->description;
-        if($request->hasFile('image'))
-        {
+        if ($request->hasFile('image')) {
             $product->image = $request->image->store('img');
         }
         $product->save();
@@ -55,13 +61,13 @@ class ProductController extends Controller
     public function types(Product $product)
     {
         return view('admin.products.types')
-                ->with(compact('product'));
+            ->with(compact('product'));
     }
 
     public function types_create(Product $product)
     {
         return view('admin.products.types_create')
-                ->with(compact('product'));
+            ->with(compact('product'));
     }
 
     public function types_store(Product $product, Request $request)
@@ -78,20 +84,19 @@ class ProductController extends Controller
         $product->types()->save($type);
 
         $sizes = collect(explode(',', $request->sizes))
-        ->map(function($size){
-            return strtoupper(trim($size));
-        })
-        ->reject(function($size){
-            return (empty($size) || is_null($size));
-        })
-        ->each(function($size) use($type){
-            $type->sizes()->create([
-                'title' => $size
-            ]);
-        });
+            ->map(function ($size) {
+                return strtoupper(trim($size));
+            })
+            ->reject(function ($size) {
+                return (empty($size) || is_null($size));
+            })
+            ->each(function ($size) use ($type) {
+                $type->sizes()->create([
+                    'title' => $size
+                ]);
+            });
 
         return redirect()->route('admin.products.types', $product);
-
     }
 
     public function types_delete(Product $product, Type $type)
@@ -104,7 +109,7 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         return view('admin.products.edit')
-                ->with(compact('product', 'categories'), $categories);
+            ->with(compact('product', 'categories'), $categories);
     }
 
     public function update(Request $request, Product $product)
@@ -125,8 +130,7 @@ class ProductController extends Controller
         $product->leiding = $request->leiding;
         $product->category_id = $request->category;
         $product->description = $request->description;
-        if($request->hasFile('image'))
-        {
+        if ($request->hasFile('image')) {
             $product->image = $request->image->store('img');
         }
         $product->save();
