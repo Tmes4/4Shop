@@ -27,7 +27,7 @@
 			@endif
 		</div>
 	</div>
-	
+
 
 	<table class="table mb-5">
 		<?php $total = 0; ?>
@@ -38,7 +38,12 @@
 				<td class="text-right">&euro;{{ $rule->price }}</td>
 				<?php $total += $rule->price; ?>
 			</tr>
+            <tr>
+                <td>Korting</td>
+                <td>Korting</td>
+            </tr>
 		@endforeach
+
 		<tr>
 			<td colspan="2"><strong>Totaal</strong></td>
 			<td class="text-right"><strong>&euro;{{ number_format($total, 2) }}</strong></td>
