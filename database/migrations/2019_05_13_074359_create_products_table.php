@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->boolean('leiding');
             $table->boolean('active')->default(true);
             $table->timestamps();
-            $table->decimal('discount', 4, 1)->default(0);
+            $table->decimal('discount', 4, 1)->default(0)->nullable();
             $table->decimal('price_after_discount', 10, 2)->default(0)->nullable();
 
 

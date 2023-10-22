@@ -36,7 +36,8 @@ class ProductController extends Controller
     {
         $this->validate(request(), [
             'title' => 'required',
-            'price' => 'required|numeric',
+            'price' => 'required|numeric|min:0',
+            'discount' => 'nullable|numeric|min:0',
             'category' => 'required|exists:categories,id',
             'active' => 'required|boolean',
             'leiding' => 'required|boolean',
@@ -47,6 +48,7 @@ class ProductController extends Controller
         $product = new Product();
         $product->title = $request->title;
         $product->price = $request->price;
+        $product->discount = $request->discount;
         $product->active = $request->active;
         $product->leiding = $request->leiding;
         $product->category_id = $request->category;
@@ -116,7 +118,8 @@ class ProductController extends Controller
     {
         $this->validate(request(), [
             'title' => 'required',
-            'price' => 'required|numeric',
+            'price' => 'nullable|numeric',
+            'discount' => 'nullable|numeric',
             'category' => 'required|exists:categories,id',
             'active' => 'required|boolean',
             'leiding' => 'required|boolean',
@@ -126,6 +129,10 @@ class ProductController extends Controller
 
         $product->title = $request->title;
         $product->price = $request->price;
+        $product->discount = $request->discount;
+        if ($request->input('discount') == null || $request->input('discount') == 0) {
+            $product->price = $product->original_price;
+        } //this have to change
         $product->active = $request->active;
         $product->leiding = $request->leiding;
         $product->category_id = $request->category;

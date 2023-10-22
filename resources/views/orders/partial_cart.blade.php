@@ -9,15 +9,15 @@
             {{ $rule->size->title }}
             @endif
         </td>
-        <td class="text-right">&euro;{{ $rule->product->price }}</td>
+        <td class="text-right">&euro;{{ $rule->product->original_price }}</td>
         @if($remove)
         <td class="text-right"><a href="{{ route('cart.remove', $key) }}">X</a></td>
         @endif
-        <?php $total += $rule->product->price_after_discount; ?>
+        <?php $total += $rule->product->price; ?>
 
     </tr>
     <tr>
-        <?php $discountPrice = $rule->product->price - $rule->product->price_after_discount; ?>
+        <?php $discountPrice =  $rule->product->original_price - $rule->product->price; ?>
         <td>Korting</td>
         <td class="discount"> - {{ $rule->product->discount }} %</td>
         <td class="text-right">- &euro;{{ number_format($discountPrice, 2) }}</td>

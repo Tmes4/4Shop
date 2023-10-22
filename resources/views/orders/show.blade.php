@@ -38,10 +38,6 @@
 				<td class="text-right">&euro;{{ $rule->price }}</td>
 				<?php $total += $rule->price; ?>
 			</tr>
-            <tr>
-                <td>Korting</td>
-                <td>Korting</td>
-            </tr>
 		@endforeach
 
 		<tr>

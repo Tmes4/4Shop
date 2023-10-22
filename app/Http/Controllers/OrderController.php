@@ -70,11 +70,11 @@ class OrderController extends Controller
         return redirect()->route('ideal.pay', $order);
     }
 
-    public function show(Order $order, $slug)
+    public function show(Order $order, $slug, Product $product)
     {
         if($order->slug != $slug) return redirect()->route('shop');
         return view('orders.show')
-            ->with(compact('order'));
+            ->with(compact('order', 'product'));
     }
 
     public function cancel(Order $order, $slug)

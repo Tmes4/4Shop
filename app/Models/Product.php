@@ -9,16 +9,30 @@ use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class Product extends Model
 {
-
-    public function getPriceAfterDiscountAttribute($value)
+    public function getPriceAttribute($value)
     {
-        $value = $this->price;
-        $discount = $value  * ($this->discount / 100);
-        $final_price = $value - $discount;
-        // $originalPrice = $value = ($this->old_price);
-        // return number_format($originalPrice, 2);
-        return number_format($final_price, 2);
+        if($this->discount > 0) {
+            $discountedPrice = $value - ($value *($this->discount / 100));
+            return number_format($discountedPrice, 2);
+        }
+
+        return $value;
     }
+
+    public function getOriginalPriceAttribute()
+    {
+        return $this->attributes['price'];
+    }
+
+    // public function getPriceAfterDiscountAttribute($value)
+    // {
+    //     $value = $this->price;
+    //     $discount = $value  * ($this->discount / 100);
+    //     $final_price = $value - $discount;
+    //     // $originalPrice = $value = ($this->old_price);
+    //     // return number_format($originalPrice, 2);
+    //     return number_format($final_price, 2);
+    // }
 
 
     // public function getPriceAttribute($value) {
