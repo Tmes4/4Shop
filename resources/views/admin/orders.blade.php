@@ -2,13 +2,14 @@
 
 @section('content')
 
-	<div class="d-flex justify-content-between align-items-center my-4">
-		<h4>Bestellingen</h4>
-		<div>
-			<a href="{{ route('admin.orders.factory') }}" target="_blank">Bekijk overzicht voor producent &gt;</a><br />
-			<a href="{{ route('admin.orders.mail') }}">Verstuur mails over ophalen &gt;</a><br />
-			<a href="{{ route('admin.orders.packing') }}" target="_blank">Print pakbonnen &gt;</a>
-		</div>
+<div class="d-flex justify-content-between align-items-center my-4">
+    <h4>Bestellingen</h4>
+    <div>
+        <a href="{{ route('admin.orders.factory') }}" target="_blank">Bekijk overzicht voor producent &gt;</a><br />
+        <a href="{{ route('admin.orders.mail') }}">Verstuur mails over ophalen &gt;</a><br />
+        <a href="{{ route('admin.orders.packing') }}" target="_blank">Print pakbonnen &gt;</a>
+    </div>
+    
 </div>
 
 <table class="table table-striped table-hover">
