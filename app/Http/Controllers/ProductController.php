@@ -24,6 +24,13 @@ class ProductController extends Controller
                 ->with(compact('product'));
     }
 
+    public function category(Category $category)
+    {
+        $products = Product::where('category_id', $category->id)->get();
+        return view('products.category')
+            ->with(compact('category', 'products'), $category->id);
+    }
+ 
     public function order(Product $product, Request $request)
     {
         $rule = new Order_rule();
@@ -34,4 +41,5 @@ class ProductController extends Controller
         $request->session()->push('cart', $rule);
         return redirect()->route('cart');
     }
+
 }

@@ -67,7 +67,7 @@ class OrderController extends Controller
     public function toggle(Order $order) {
         $order->delivered = !$order->delivered;
         $order->save();
-        return redirect()->back();
+        return redirect('/admin/orders');
 
     }
 }

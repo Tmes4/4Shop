@@ -24,7 +24,7 @@
         <!-- {{ $category->$products}} -->
         @foreach ($products as $product)
         <ul class="mb-1">
-            <li>{{ $product->title}}</</li>
+            <li>{{ $product->title}}</li>
         </ul>
         @endforeach
     </div>

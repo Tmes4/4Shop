@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 
-class ProductController extends Controller
+class   ProductController extends Controller
 {
 
     public function index()
@@ -119,7 +119,7 @@ class ProductController extends Controller
         $this->validate(request(), [
             'title' => 'required',
             'price' => 'nullable|numeric',
-            'discount' => 'nullable|numeric',
+            'discount' => 'nullable',
             'category' => 'required|exists:categories,id',
             'active' => 'required|boolean',
             'leiding' => 'required|boolean',
@@ -130,9 +130,9 @@ class ProductController extends Controller
         $product->title = $request->title;
         $product->price = $request->price;
         $product->discount = $request->discount;
-        if ($request->input('discount') == null || $request->input('discount') == 0) {
-            $product->price = $product->original_price;
-        } //this have to change
+        // if ($request->input('discount') == null || $request->input('discount') == 0) {
+        //     $product->price = $product->original_price;
+        // } //this have to change
         $product->active = $request->active;
         $product->leiding = $request->leiding;
         $product->category_id = $request->category;

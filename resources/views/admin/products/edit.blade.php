@@ -18,7 +18,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">&euro;</div>
                 </div>
-                <input type="number" min="0" id="price" name="price" class="form-control" value="{{ old('price', $product->price) }}">
+                <input type="number" min="0" id="price" name="price" class="form-control" value="{{ old('product', $product->original_price) }}">
             </div>
         </div>
 

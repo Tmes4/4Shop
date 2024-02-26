@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/winkel');
 Route::get('/winkel', [ProductController::class, 'index'])->name('shop');
+Route::get('/categories/{category}', [ProductController::class, 'category'])->name('category.show'); //NEW
+
 
 Route::get('/winkel/mandje', [OrderController::class, 'cart'])->name('cart');
 Route::get('/winkel/mandje/verwijder/{key}', [OrderController::class, 'remove'])->name('cart.remove');
@@ -59,7 +61,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::resource('orders', AdminOrderController::class, ['as' => 'admin'])->only(['index', 'show', 'destroy']);
 
     Route::resource('categories', CategoryController::class, ['as' => 'admin'])->except('show');
-    Route::get('categories/{category}', [CategoryController::class, 'show'])->name('category.show'); //NEW
 
     // Route::get('categories', CategoryController::class, 'index')->name('admin.categories.index');
 
